@@ -229,7 +229,7 @@ class IntervalSkipList
     newPromoted = []
 
     for i in [0...(node.height - 1)]
-      for marker in clone(updated[i].markers[i])
+      for marker in updated[i].markers[i]
         [startIndex, endIndex] = @intervalsByMarker[marker]
         if @compare(node.next[i + 1].index, endIndex) <= 0
           @removeMarkerOnPath(marker, node.next[i], node.next[i + 1], i)

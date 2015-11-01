@@ -332,7 +332,6 @@ class IntervalSkipList
     startNode.addStartingMarker(marker)
     endNode.addEndingMarker(marker)
 
-    startIndex = startNode.index
     endIndex = endNode.index
     node = startNode
     i = 0
@@ -356,7 +355,6 @@ class IntervalSkipList
     startNode.removeStartingMarker(marker)
     endNode.removeEndingMarker(marker)
 
-    startIndex = startNode.index
     endIndex = endNode.index
     node = startNode
     i = 0
@@ -467,9 +465,6 @@ class Node
 
   addMarkersAtLevel: (markers, level) ->
     @addMarkerAtLevel(marker, level) for marker in markers
-
-  markersAboveLevel: (level) ->
-    flatten(@markers[level...@height])
 
   verifyMarkerInvariant: (marker, endIndex, compare) ->
     return if compare(@index, endIndex) is 0

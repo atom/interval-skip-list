@@ -12,6 +12,12 @@ DefaultComparator = (a, b) ->
   else
     0
 
+min = (a, b) ->
+  if a < b
+    a
+  else
+    b
+
 module.exports =
 class IntervalSkipList
   maxHeight: 8
@@ -484,7 +490,7 @@ class Node
     throw new Error("Node at #{@index} should have marker #{marker} on some forward pointer to an index <= #{endIndex}, but it doesn't")
 
   verifyNotMarkedBelowLevel: (marker, level, untilIndex, compare) ->
-    for i in [level - 1..0]
+    for i in [min(level, @height) - 1..0]
       if include(@markers[i], marker)
         throw new Error("Node at #{@index} should not have marker #{marker} at level #{i} pointer to node at #{@next[i].index}")
 
